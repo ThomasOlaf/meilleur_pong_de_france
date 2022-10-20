@@ -10,6 +10,7 @@ public class BallControl : MonoBehaviour
     private int speed = 20;
     private int minSpeed = 10;
     private int maxSpeed = 50;
+    private int Door =42;
 
     void GoBall()
     {
@@ -63,6 +64,6 @@ public class BallControl : MonoBehaviour
             speed = Random.Range(-minSpeed, -maxSpeed);
             rb2d.velocity = new Vector2(speed, rb2d.velocity.y);
         }
-        Debug.Log(speed);
+        Door = Door;
     }
 }
