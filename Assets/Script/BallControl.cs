@@ -7,16 +7,20 @@ public class BallControl : MonoBehaviour
 
     private Rigidbody2D rb2d;
 
+    private int speed = 20;
+    private int minSpeed = 10;
+    private int maxSpeed = 50;
+
     void GoBall()
     {
         float rand = Random.Range(0, 2);
         if (rand < 1)
         {
-            rb2d.AddForce(new Vector2(20, -15));
+            rb2d.AddForce(new Vector2(speed, -15));
         }
         else
         {
-            rb2d.AddForce(new Vector2(-20, -15));
+            rb2d.AddForce(new Vector2(-speed, -15));
         }
     }
 
@@ -46,5 +50,19 @@ public class BallControl : MonoBehaviour
             vel.y = (rb2d.velocity.y / 2) + (coll.collider.attachedRigidbody.velocity.y / 3);
             rb2d.velocity = vel;
         }
+    }
+
+    private void Update()
+    {
+        if (rb2d.velocity.x > 0)
+        {
+            speed = Random.Range(minSpeed, maxSpeed);
+            rb2d.velocity = new Vector2(speed,rb2d.velocity.y);
+        } else if (rb2d.velocity.x < 0)
+        {
+            speed = Random.Range(-minSpeed, -maxSpeed);
+            rb2d.velocity = new Vector2(speed, rb2d.velocity.y);
+        }
+        Debug.Log(speed);
     }
 }
