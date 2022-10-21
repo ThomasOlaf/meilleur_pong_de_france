@@ -9,8 +9,9 @@ public class BallControl : MonoBehaviour
 
     private int speed = 20;
     private int minSpeed = 10;
-    private int maxSpeed = 50;
+    private int maxSpeed = 30;
     private int Door =42;
+
 
     void GoBall()
     {
@@ -29,6 +30,8 @@ public class BallControl : MonoBehaviour
     {
         rb2d = GetComponent<Rigidbody2D>();
         Invoke("GoBall", 2);
+        StartCoroutine(Balls());
+        
     }
 
     void ResetBall()
@@ -55,6 +58,12 @@ public class BallControl : MonoBehaviour
 
     private void Update()
     {
+        
+        Door = Door;
+    }
+    IEnumerator Balls()
+    {
+        yield return new WaitForSeconds(5);
         if (rb2d.velocity.x > 0)
         {
             speed = Random.Range(minSpeed, maxSpeed);
@@ -63,7 +72,7 @@ public class BallControl : MonoBehaviour
         {
             speed = Random.Range(-minSpeed, -maxSpeed);
             rb2d.velocity = new Vector2(speed, rb2d.velocity.y);
-        }
-        Door = Door;
+        };
+        StartCoroutine(Balls());
     }
 }
