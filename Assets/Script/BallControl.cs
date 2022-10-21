@@ -11,6 +11,7 @@ public class BallControl : MonoBehaviour
     private int minSpeed = 10;
     private int maxSpeed = 30;
     private int Door =42;
+    private TrailRenderer tr;
 
 
     void GoBall()
@@ -31,13 +32,14 @@ public class BallControl : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         Invoke("GoBall", 2);
         StartCoroutine(Balls());
-        
+        tr = GetComponentInChildren<TrailRenderer>();
     }
 
     void ResetBall()
     {
         rb2d.velocity = Vector2.zero;
         transform.position = Vector2.zero;
+        tr.Clear();
     }
 
     void RestartGame()
