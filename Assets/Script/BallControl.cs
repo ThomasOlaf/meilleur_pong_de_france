@@ -65,7 +65,7 @@ public class BallControl : MonoBehaviour
     }
     IEnumerator Balls()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(10);
         if (rb2d.velocity.x > 0)
         {
             speed = Random.Range(minSpeed, maxSpeed);
